@@ -36,8 +36,8 @@ end
 // Comb. Logic 
 // --------------------------------------
 
-assign cnt_ini = XXX; // Some value
-assign cnt_rst = XXX; // Some value, used for 10 secs ( 25 MHZ internal clock )
+assign cnt_ini = 32'b0; // Some value
+assign cnt_rst = 32'b00000001011111010111100000111111; // Some value, used for 10 secs ( 25 MHZ internal clock )
 
 // --------------------------------------
 // Comb. Logic - FSM  
@@ -45,20 +45,25 @@ assign cnt_rst = XXX; // Some value, used for 10 secs ( 25 MHZ internal clock )
 always @( current_state or b) begin
 	case (current_state) 
 		OFF : begin  
-				// your code
-			end
+			// go from OFF to START
+			current_state = START;
+		end
 		  
 		START : begin 
-				// your code
-			end 
+			// go from START to ON
+			current_state = ON;
+		end 
 			
 		ON:  begin 
-				// your code
-			end 
+			// depends on timer
+			if (timer)
+				current_state = OFF;
+		end 
 			
 		default:  begin 
- 				// your code
-			end 
+ 			// go to OFF
+			current_state = OFF;
+		end 
 	endcase
 end 
 
