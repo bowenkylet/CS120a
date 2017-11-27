@@ -1,0 +1,9 @@
+// iNPUTS 
+
+NET "clk" LOC = "P54" ; 
+NET "reset" LOC = "P48";
+NET "b" LOC = "P69" ; 
+
+// Outputs 
+
+NET "light" LOC = "P15" ; 
